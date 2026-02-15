@@ -51,3 +51,26 @@ CREATE TABLE IF NOT EXISTS follows (
   FOREIGN KEY (follower_id) REFERENCES users(id),
   FOREIGN KEY (following_id) REFERENCES users(id)
 );
+
+-- DM threads table
+CREATE TABLE IF NOT EXISTS dm_threads (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_a_id INTEGER NOT NULL,
+  user_b_id INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_a_id, user_b_id),
+  FOREIGN KEY (user_a_id) REFERENCES users(id),
+  FOREIGN KEY (user_b_id) REFERENCES users(id)
+);
+
+-- DM messages table
+CREATE TABLE IF NOT EXISTS dm_messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  thread_id INTEGER NOT NULL,
+  sender_id INTEGER NOT NULL,
+  content TEXT NOT NULL,
+  is_read INTEGER NOT NULL DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (thread_id) REFERENCES dm_threads(id),
+  FOREIGN KEY (sender_id) REFERENCES users(id)
+);

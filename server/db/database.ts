@@ -64,4 +64,22 @@ insertFollow.run(3, 4, '2026-01-02 09:00:00');
 insertFollow.run(4, 5, '2026-01-02 10:00:00');
 insertFollow.run(5, 3, '2026-01-02 11:00:00');
 
+// 初期データ: DMスレッド
+const insertDmThread = db.prepare('INSERT OR IGNORE INTO dm_threads (id, user_a_id, user_b_id, created_at) VALUES (?, ?, ?, ?)');
+insertDmThread.run(1, 2, 3, '2026-01-05 09:00:00');
+insertDmThread.run(2, 2, 4, '2026-01-07 08:30:00');
+insertDmThread.run(3, 2, 5, '2026-01-08 10:00:00');
+
+// 初期データ: DMメッセージ
+const insertDmMessage = db.prepare('INSERT OR IGNORE INTO dm_messages (id, thread_id, sender_id, content, is_read, created_at) VALUES (?, ?, ?, ?, ?, ?)');
+insertDmMessage.run(1, 1, 3, '今日の試合えぐかったな', 0, '2026-02-12 09:58:00');
+insertDmMessage.run(2, 1, 2, 'さすがに俺天才すぎる', 1, '2026-02-12 10:00:00');
+insertDmMessage.run(3, 1, 3, '明日もがんばってくれ', 0, '2026-02-12 10:03:00');
+
+insertDmMessage.run(4, 2, 4, '写真ありがとう！次の投稿で使うね', 1, '2026-02-12 09:45:00');
+insertDmMessage.run(5, 2, 2, 'ぜひ使ってください 🙌', 1, '2026-02-12 09:46:00');
+
+insertDmMessage.run(6, 3, 5, 'ミーム送ったから見てほしい 😂', 0, '2026-02-12 08:55:00');
+insertDmMessage.run(7, 3, 2, '見た！朝から笑った🤣', 1, '2026-02-12 08:58:00');
+
 export default db;

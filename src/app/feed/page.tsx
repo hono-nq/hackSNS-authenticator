@@ -2,6 +2,25 @@ import Link from "next/link";
 import styles from "./feed.module.css";
 
 export default function FeedPage() {
+  const alphaNumChars = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+  const generateStoryId = (index: number) => {
+    const length = 5 + ((index * 11 + 3) % 4);
+    let value = "";
+
+    for (let offset = 0; offset < length; offset += 1) {
+      const charIndex = (index * 13 + offset * 17 + 7) % alphaNumChars.length;
+      value += alphaNumChars[charIndex];
+    }
+
+    return value;
+  };
+
+  const generateColor = (seed: number) => {
+    const value = ((seed * 2654435761) % 0xffffff).toString(16).padStart(6, "0");
+    return `#${value}`;
+  };
+
   const suggestions = [
     { name: "kenoere", reason: "Followed by heych2002 + 7 more" },
     { name: "lofti232", reason: "Followed by kenoere + 12 more" },
@@ -24,13 +43,20 @@ export default function FeedPage() {
 
           <div className={styles.navIcons}>
             <Link href="/feed" className={styles.icon}>🏠</Link>
-            <div className={styles.icon}>💬</div>
+            <Link href="/dm" className={styles.icon}>💬</Link>
             <div className={styles.icon}>➕</div>
             <div className={styles.icon}>🧭</div>
             <div className={styles.icon}>❤️</div>
             <Link href="/profile">
                <div className={styles.navAvatar}>
-                 <div className={styles.navAvatarImg} style={{backgroundColor: '#e1306c'}}></div>
+                 <div
+                   className={styles.navAvatarImg}
+                   style={{
+                     backgroundImage: "url('/image_1.png')",
+                     backgroundSize: "cover",
+                     backgroundPosition: "center",
+                   }}
+                 ></div>
                </div>
             </Link>
           </div>
@@ -47,9 +73,20 @@ export default function FeedPage() {
               {[...Array(8)].map((_, i) => (
                 <div key={i} className={styles.storyItem}>
                   <div className={styles.storyAvatarBorder}>
-                    <div className={styles.storyAvatar} style={{backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`}}></div>
+                    <div
+                      className={styles.storyAvatar}
+                      style={
+                        i === 0
+                          ? {
+                              backgroundImage: "url('/image_1.png')",
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                            }
+                          : { backgroundColor: generateColor(i + 1) }
+                      }
+                    ></div>
                   </div>
-                  <span className={styles.storyName}>user_{i+1}</span>
+                  <span className={styles.storyName}>{i === 0 ? "otn_s" : generateStoryId(i)}</span>
                 </div>
               ))}
             </div>
@@ -133,10 +170,17 @@ export default function FeedPage() {
         <div className={styles.rightCol}>
           <div className={styles.sidebarSection}>
             <div className={styles.currentUser}>
-               <div className={styles.currentAvatar} style={{backgroundColor: '#e1306c'}}></div>
+               <div
+                 className={styles.currentAvatar}
+                 style={{
+                   backgroundImage: "url('/image_1.png')",
+                   backgroundSize: "cover",
+                   backgroundPosition: "center",
+                 }}
+               ></div>
                <div className={styles.currentInfo}>
-                 <span className={styles.currentUsername}>eloears</span>
-                 <span className={styles.currentName}>eloears</span>
+                 <span className={styles.currentUsername}>otn_s</span>
+                 <span className={styles.currentName}>⚾</span>
                </div>
                <button className={styles.switchLink}>Switch</button>
             </div>
@@ -150,7 +194,7 @@ export default function FeedPage() {
               {suggestions.map((user, i) => (
                 <div key={i} className={styles.suggestionItem}>
                    <div className={styles.userInfo}>
-                      <div className={styles.suggAvatar} style={{backgroundColor: `#${Math.floor(Math.random()*16777215).toString(16)}`}}></div>
+                      <div className={styles.suggAvatar} style={{ backgroundColor: generateColor(i + 101) }}></div>
                       <div className={styles.suggInfo}>
                         <span className={styles.suggUsername}>{user.name}</span>
                         <span className={styles.suggReason}>{user.reason}</span>
