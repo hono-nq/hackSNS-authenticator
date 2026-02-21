@@ -16,16 +16,23 @@ export default function ProfilePage() {
       <div className={styles.profileInfo}>
         <div className={styles.avatarContainer}>
           <div className={styles.storyRing}>
-            <div className={styles.avatar}></div>
+            <div 
+              className={styles.avatar}
+              style={{
+                backgroundImage: "url('/image_1.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
           </div>
         </div>
         <div className={styles.stats}>
           <div className={styles.statItem}>
-            <span className={styles.statNumber}>6,509</span>
+            <span className={styles.statNumber}>0</span>
             <span className={styles.statLabel}>投稿</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statNumber}>3.7億</span>
+            <span className={styles.statNumber}>16</span>
             <span className={styles.statLabel}>フォロワー</span>
           </div>
           <div className={styles.statItem}>
@@ -37,13 +44,10 @@ export default function ProfilePage() {
 
       {/* Bio */}
       <div className={styles.bio}>
-        <span className={styles.bioName}>nyanstagram</span>
+        <span className={styles.bioName}>otn_s</span>
         <br />
-        Bringing you closer to the people and things you love.
+        Calif., USA
         <br />
-        <a href="#" className={styles.link}>www.nyanstagram.com/votinginfocenter/</a>
-        <br />
-        翻訳を見る
       </div>
 
       {/* Action Buttons */}
@@ -51,16 +55,6 @@ export default function ProfilePage() {
         <button className={styles.actionBtn}>フォロー中</button>
         <button className={styles.actionBtn}>メッセージ</button>
         <button className={styles.actionBtn}>∨</button>
-      </div>
-
-      {/* Highlights */}
-      <div className={styles.highlights}>
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className={styles.highlightItem}>
-            <div className={styles.highlightAvatar}></div>
-            <span className={styles.highlightLabel}>Highlight {i+1}</span>
-          </div>
-        ))}
       </div>
 
       {/* Tabs */}

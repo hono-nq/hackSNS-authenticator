@@ -70,7 +70,7 @@ export default function FeedPage() {
           {/* Stories */}
           <div className={styles.storiesBox}>
             <div className={styles.storiesList}>
-              {[...Array(8)].map((_, i) => (
+              {[...Array(6)].map((_, i) => (
                 <div key={i} className={styles.storyItem}>
                   <div className={styles.storyAvatarBorder}>
                     <div
@@ -82,7 +82,11 @@ export default function FeedPage() {
                               backgroundSize: "cover",
                               backgroundPosition: "center",
                             }
-                          : { backgroundColor: generateColor(i + 1) }
+                          : {
+                              backgroundImage: `url('/2432170_${i + 1}.png')`,
+                              backgroundSize: "cover",
+                              backgroundPosition: "center",
+                            }
                       }
                     ></div>
                   </div>
@@ -96,7 +100,14 @@ export default function FeedPage() {
           <article className={styles.post}>
             <div className={styles.postHeader}>
               <div className={styles.userInfo}>
-                <div className={styles.userAvatar} style={{backgroundColor: '#a65c2e'}}></div>
+                <div 
+                  className={styles.userAvatar} 
+                  style={{
+                    backgroundImage: "url('/2432170_2.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
                 <span className={styles.userName}>amethyst_grl</span>
               </div>
               <div className={styles.moreIcon}>•••</div>
@@ -133,7 +144,14 @@ export default function FeedPage() {
           <article className={styles.post}>
             <div className={styles.postHeader}>
               <div className={styles.userInfo}>
-                <div className={styles.userAvatar} style={{backgroundColor: '#b3e5fc'}}></div>
+                <div 
+                  className={styles.userAvatar} 
+                  style={{
+                    backgroundImage: "url('/2432170_3.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
                 <span className={styles.userName}>natgeo</span>
               </div>
               <div className={styles.moreIcon}>•••</div>
@@ -194,7 +212,14 @@ export default function FeedPage() {
               {suggestions.map((user, i) => (
                 <div key={i} className={styles.suggestionItem}>
                    <div className={styles.userInfo}>
-                      <div className={styles.suggAvatar} style={{ backgroundColor: generateColor(i + 101) }}></div>
+                      <div 
+                        className={styles.suggAvatar} 
+                        style={{ 
+                          backgroundImage: `url('/2432170_${(i % 5) + 2}.png')`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      ></div>
                       <div className={styles.suggInfo}>
                         <span className={styles.suggUsername}>{user.name}</span>
                         <span className={styles.suggReason}>{user.reason}</span>

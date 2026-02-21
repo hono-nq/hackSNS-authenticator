@@ -126,17 +126,28 @@ export default function DmPage() {
       <main className={styles.shell}>
         <aside className={styles.iconRail}>
           <div className={styles.railTop}>
-            <Link href="/feed" className={styles.railIcon}>◎</Link>
-            <span className={styles.railIcon}>⌂</span>
-            <span className={styles.railIcon}>▣</span>
-            <span className={styles.railIcon}>✈</span>
-            <span className={styles.railIcon}>⌕</span>
-            <span className={styles.railIcon}>♡</span>
-            <span className={styles.railIcon}>＋</span>
+            <Link href="/feed" className={styles.railIcon}>🏠</Link>
+            <span className={styles.railIcon}>🔍</span>
+            <span className={styles.railIcon}>➕</span>
+            <span className={styles.railIcon}>🧭</span>
+            <span className={styles.railIcon}>❤️</span>
+            <Link href="/dm" className={styles.railIcon}>💬</Link>
           </div>
           <div className={styles.railBottom}>
-            <span className={styles.railAvatar}>O</span>
-            <span className={styles.railIcon}>☰</span>
+            <Link href="/profile">
+              <div 
+                className={styles.railAvatar}
+                style={{
+                  backgroundImage: "url('/image_1.png')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  border: "none",
+                  backgroundColor: "transparent",
+                  color: "transparent"
+                }}
+              ></div>
+            </Link>
+            <span className={styles.railIcon}>≡</span>
           </div>
         </aside>
 
